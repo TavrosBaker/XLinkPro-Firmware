@@ -2,7 +2,7 @@
 
 **ESP32-S3-powered Xbox 360 controller bridge, with a Windows firmware installer and browser-based control dashboard.**
 
-XLinkPro is an experimental hardware/software project that uses an ESP32 ($5 micro computer) to unlock more usability out of your console. This allows your console to connect to modern bluetooth controllers, have a comand prompt, use cheats, xbox smart glass, Nintendo switch as the xbox 360 equivalent to a Wii-U gamepad, plus a lot more. This project is stil under development and more features will be added.
+XLinkPro is an experimental hardware/software project that uses an ESP32 ($5 micro computer) to unlock more usability out of your console. This allows your console to connect to modern bluetooth controllers, have a comand prompt, use cheats, xbox smart glass, nintendo switch as the xbox 360 equivalent to a Wii-U gamepad, plus a lot more. This project is still under development and more features will be added.
 
 > **Read the hardware compatibility section before flashing.** Firmware intended for one ESP32-S3 configuration is not automatically safe for every ESP32-S3 board. This project is independently developed and is not affiliated with Microsoft, Xbox or Espressif.
 
