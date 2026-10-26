@@ -1,0 +1,30 @@
+# Arduino build output
+build/
+*.elf
+*.map
+*.o
+*.d
+
+# Python temporary files
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Windows flasher builds
+dist/
+*.spec
+
+# Local development
+.vscode/
+.idea/
+.env
+.env.*
+
+# Local secrets
+secrets.h
+wifi_credentials.h
+credentials.json
+
+# Logs
+*.log
