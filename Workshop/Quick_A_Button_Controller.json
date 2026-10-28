@@ -1,0 +1,8 @@
+{
+  "id": "xlinkpro.example.quick-a-controller",
+  "name": "Filename defines displayed name",
+  "version": "1.0.0",
+  "description": "Controller demo: adds a button that presses A once.",
+  "author": "XLinkPro Examples",
+  "code": "const panel = document.querySelector('.xp-workshop-widget:last-child .xp-workshop-content');\nif (!panel) throw Error('Controller panel unavailable');\nconst button = document.createElement('button');\nbutton.textContent = 'Press A once';\nbutton.className = 'mini-action';\nconst status = document.createElement('p');\nstatus.textContent = 'Ready';\npanel.append(button, status);\nlet active = true;\nbutton.onclick = async () => {\n  if (!active) return;\n  button.disabled = true;\n  try { await xlink.command('press A 100'); status.textContent = 'A pressed'; }\n  catch (e) { status.textContent = 'Error: ' + e.message; }\n  finally { button.disabled = false; }\n};\nxlink.log('Controller demo enabled');\nreturn () => { active = false; button.onclick = null; };"
+}

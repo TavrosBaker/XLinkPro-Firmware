@@ -1,0 +1,8 @@
+{
+  "id": "xlinkpro.example.ab-sequence-macro",
+  "name": "Filename defines displayed name",
+  "version": "1.0.0",
+  "description": "Macro demo: press A, wait, then press B on demand.",
+  "author": "XLinkPro Examples",
+  "code": "const panel = document.querySelector('.xp-workshop-widget:last-child .xp-workshop-content');\nif (!panel) throw Error('Macro panel unavailable');\nconst button = document.createElement('button');\nbutton.className = 'mini-action';\nbutton.textContent = 'Run A -> B sequence';\nconst status = document.createElement('p');\nstatus.textContent = 'Idle';\npanel.append(button, status);\nlet enabled = true;\nlet running = false;\nconst sleep = ms => new Promise(resolve => setTimeout(resolve, ms));\nbutton.onclick = async () => {\n  if (!enabled || running) return;\n  running = true; button.disabled = true;\n  try {\n    status.textContent = 'Pressing A';\n    await xlink.command('press A 100');\n    await sleep(500);\n    if (!enabled) return;\n    status.textContent = 'Pressing B';\n    await xlink.command('press B 100');\n    status.textContent = 'Sequence complete';\n  } catch (e) { status.textContent = 'Error: ' + e.message; }\n  finally { running = false; button.disabled = false; }\n};\nxlink.log('A/B sequence macro enabled');\nreturn () => { enabled = false; button.onclick = null; };"
+}

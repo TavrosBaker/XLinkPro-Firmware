@@ -1,0 +1,8 @@
+{
+  "id": "xlinkpro.example.purple-glow-misc",
+  "name": "Filename defines displayed name",
+  "version": "1.0.0",
+  "description": "Misc demo: change dashboard accent and card styling; restores appearance when disabled.",
+  "author": "XLinkPro Examples",
+  "code": "const root = document.documentElement;\nconst oldPurple = root.style.getPropertyValue('--purple');\nconst oldPriority = root.style.getPropertyPriority('--purple');\nroot.style.setProperty('--purple', '#df80ff');\nconst removeStyle = xlink.addStyle(`\n  .card { box-shadow: 0 0 24px #b65cff24, 0 12px 40px #0002 !important; }\n  .nav.active { border-color: #df80ff !important; }\n`);\nxlink.log('Purple Glow theme enabled (Misc plugin)');\nreturn () => {\n  removeStyle();\n  if (oldPurple) root.style.setProperty('--purple', oldPurple, oldPriority);\n  else root.style.removeProperty('--purple');\n  xlink.log('Purple Glow theme disabled');\n};"
+}

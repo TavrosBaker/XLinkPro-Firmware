@@ -1,0 +1,8 @@
+{
+  "id": "xlinkpro.example.device-status-console",
+  "name": "Filename defines displayed name",
+  "version": "1.0.0",
+  "description": "Console demo: read ESP32 statistics and display them in the Console page.",
+  "author": "XLinkPro Examples",
+  "code": "const panel = document.querySelector('.xp-workshop-widget:last-child .xp-workshop-content');\nif (!panel) throw Error('Console panel unavailable');\nconst button = document.createElement('button');\nbutton.className = 'mini-action';\nbutton.textContent = 'Fetch device status';\nconst output = document.createElement('pre');\noutput.style.cssText = 'white-space:pre-wrap;overflow-wrap:anywhere;color:#ff8fda';\noutput.textContent = 'Click to query the ESP32';\npanel.append(button, output);\nlet enabled = true;\nbutton.onclick = async () => {\n  if (!enabled) return;\n  button.disabled = true;\n  try {\n    const data = await xlink.status();\n    if (enabled) output.textContent = JSON.stringify(data, null, 2);\n    xlink.log('Device status fetched by Console plugin');\n  } catch (e) { if (enabled) output.textContent = 'Error: ' + e.message; }\n  finally { button.disabled = false; }\n};\nreturn () => { enabled = false; button.onclick = null; };"
+}
