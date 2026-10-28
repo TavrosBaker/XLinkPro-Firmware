@@ -1,0 +1,8 @@
+{
+  "id": "tavros.triple-tap-a",
+  "name": "Triple Tap A",
+  "version": "1.0.0",
+  "description": "Three spaced A button taps",
+  "author": "Tavros Baker",
+  "code": "const undo=xlinkWorkshop.addRoutine({\"name\":\"Triple Tap A\",\"trigger\":\"manual\",\"steps\":[{\"type\":\"press\",\"button\":11,\"ms\":85},{\"type\":\"wait\",\"ms\":160},{\"type\":\"press\",\"button\":11,\"ms\":85},{\"type\":\"wait\",\"ms\":160},{\"type\":\"press\",\"button\":11,\"ms\":85}]});xlink.log(\"Triple Tap A installed in Macros\");return undo;"
+}

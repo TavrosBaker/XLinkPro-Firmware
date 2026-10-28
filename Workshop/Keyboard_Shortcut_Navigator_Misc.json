@@ -1,0 +1,8 @@
+{
+  "id": "tavros.keyboard-shortcut-navigator",
+  "name": "Keyboard Shortcut Navigator",
+  "version": "1.0.0",
+  "description": "Use Alt+1 through Alt+6 to switch dashboard pages; Alt+0 triggers emergency stop.",
+  "author": "Tavros Baker",
+  "code": "const root=document.createElement('div');root.className='card xp-workshop-widget';root.style.cssText='margin:16px 0;border-left:3px solid #9b5cff;padding:16px';document.getElementById('settings').append(root);root.innerHTML=\"<p>Alt+1 Controller \\u00b7 Alt+2 Cheats \\u00b7 Alt+3 Macros \\u00b7 Alt+4 Console \\u00b7 Alt+5 Settings \\u00b7 Alt+6 Workshop \\u00b7 Alt+0 STOP</p>\";const pages=['controller','cheats','macros','console','settings','workshop'];const handler=e=>{if(!e.altKey||e.ctrlKey||e.metaKey)return;const n=Number(e.key);if(!Number.isInteger(n)||n<0||n>6)return;e.preventDefault();if(n===0)xlink.stop();else xlink.navigate(pages[n-1])};window.addEventListener('keydown',handler);return()=>{root.remove();window.removeEventListener('keydown',handler);root.replaceChildren()};"
+}

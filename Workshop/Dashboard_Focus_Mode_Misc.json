@@ -1,0 +1,8 @@
+{
+  "id": "tavros.dashboard-focus-mode",
+  "name": "Dashboard Focus Mode",
+  "version": "1.0.0",
+  "description": "Distraction-free full-screen dashboard mode with a floating exit control.",
+  "author": "Tavros Baker",
+  "code": "const root=document.createElement('div');root.className='card xp-workshop-widget';root.style.cssText='margin:16px 0;border-left:3px solid #9b5cff;padding:16px';document.getElementById('settings').append(root);root.innerHTML=\"<button data-on>Enter focus mode</button><p>Hides the dashboard navigation and header until you exit.</p>\";const style=document.createElement('style');style.textContent='body.tavros-focus header,body.tavros-focus nav,body.tavros-focus .sidebar{display:none!important}body.tavros-focus main{max-width:100%!important;margin:0!important}';document.head.append(style);const exit=document.createElement('button');exit.textContent='Exit Focus';exit.style.cssText='position:fixed;right:16px;bottom:16px;z-index:999999;background:#9b5cff;color:white;padding:12px 18px;display:none';document.body.append(exit);const off=()=>{document.body.classList.remove('tavros-focus');exit.style.display='none';if(document.fullscreenElement)document.exitFullscreen().catch(()=>{})};root.querySelector('[data-on]').onclick=()=>{document.body.classList.add('tavros-focus');exit.style.display='block';document.documentElement.requestFullscreen?.().catch(()=>{})};exit.onclick=off;return()=>{root.remove();off();style.remove();exit.remove();root.replaceChildren()};"
+}

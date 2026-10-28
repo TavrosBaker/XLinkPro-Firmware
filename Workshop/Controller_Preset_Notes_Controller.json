@@ -1,0 +1,8 @@
+{
+  "id": "tavros.controller-preset-notes",
+  "name": "Controller Preset Notes",
+  "version": "1.0.0",
+  "description": "Save named controller configuration notes and copy them for quick reference.",
+  "author": "Tavros Baker",
+  "code": "const root=document.querySelector('#xp-plugin-'+\"tavros.controller-preset-notes\"+' .xp-workshop-content');if(!root)throw Error('Plugin panel missing');root.innerHTML=\"<input data-name placeholder=\\\"Profile name\\\"><textarea data-notes rows=\\\"4\\\" style=\\\"width:100%\\\" placeholder=\\\"Sensitivity, deadzone, mappings, etc.\\\"></textarea><button data-save>Save profile</button><div data-list></div>\";const key='tavros-controller-notes';let items=[];try{items=JSON.parse(localStorage.getItem(key)||'[]')}catch{}function draw(){const list=root.querySelector('[data-list]');list.replaceChildren();for(const p of items){const box=document.createElement('div');box.style.margin='8px 0';const b=document.createElement('button');b.textContent=p.name;b.onclick=()=>{root.querySelector('[data-name]').value=p.name;root.querySelector('[data-notes]').value=p.notes};const del=document.createElement('button');del.textContent='Delete';del.onclick=()=>{items=items.filter(x=>x!==p);save()};box.append(b,del);list.append(box)}}function save(){localStorage.setItem(key,JSON.stringify(items));draw()}root.querySelector('[data-save]').onclick=()=>{const name=root.querySelector('[data-name]').value.trim(),notes=root.querySelector('[data-notes]').value;if(!name)return;items=items.filter(x=>x.name!==name);items.push({name:name.slice(0,50),notes:notes.slice(0,5000)});items=items.slice(-25);save()};draw();return()=>root.replaceChildren();"
+}

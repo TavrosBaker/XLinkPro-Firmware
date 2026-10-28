@@ -1,0 +1,8 @@
+{
+  "id": "tavros.settings-snapshot-vault",
+  "name": "Settings Snapshot Vault",
+  "version": "1.0.0",
+  "description": "Export a backup of XLinkPro-related browser localStorage keys, or restore from pasted JSON.",
+  "author": "Tavros Baker",
+  "code": "const root=document.createElement('div');root.className='card xp-workshop-widget';root.style.cssText='margin:16px 0;border-left:3px solid #9b5cff;padding:16px';document.getElementById('settings').append(root);root.innerHTML=\"<p>Backs up browser settings only, not ESP32 flash/NVS. Restore overwrites matching keys.</p><button data-export>Download backup</button> <button data-restore>Restore pasted backup</button><p data-msg></p>\";root.querySelector('[data-export]').onclick=()=>{const data={created:new Date().toISOString(),entries:{}};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(/^(xp|xlink|v13|macro|tavros)/i.test(k))data.entries[k]=localStorage.getItem(k)}xlink.download('xlinkpro-browser-backup.json',JSON.stringify(data,null,2));root.querySelector('[data-msg]').textContent='Backup downloaded'};root.querySelector('[data-restore]').onclick=()=>{const raw=prompt('Paste JSON backup contents');if(!raw)return;try{const data=JSON.parse(raw);if(!data.entries||typeof data.entries!=='object')throw Error('Invalid backup');const keys=Object.keys(data.entries).filter(k=>/^(xp|xlink|v13|macro|tavros)/i.test(k));if(!confirm(`Restore ${keys.length} keys? Reload dashboard afterwards.`))return;for(const k of keys)localStorage.setItem(k,String(data.entries[k]));root.querySelector('[data-msg]').textContent='Restored. Reload the dashboard.'}catch(e){root.querySelector('[data-msg]').textContent=e.message}};return()=>root.replaceChildren();"
+}

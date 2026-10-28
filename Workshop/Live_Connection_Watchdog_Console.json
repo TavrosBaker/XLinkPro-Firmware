@@ -1,0 +1,8 @@
+{
+  "id": "tavros.live-connection-watchdog",
+  "name": "Live Connection Watchdog",
+  "version": "1.0.0",
+  "description": "Watch /stats for connectivity failures and display a persistent live health badge.",
+  "author": "Tavros Baker",
+  "code": "const root=document.querySelector('#xp-plugin-'+\"tavros.live-connection-watchdog\"+' .xp-workshop-content');if(!root)throw Error('Plugin panel missing');root.innerHTML=\"<p data-status>Checking device\\u2026</p><p data-count></p>\";let ok=0,fail=0;async function check(){try{await xlink.status();ok++;root.querySelector('[data-status]').textContent='● Connected';root.querySelector('[data-status]').style.color='#63e6a5'}catch(e){fail++;root.querySelector('[data-status]').textContent='● Unreachable: '+e.message;root.querySelector('[data-status]').style.color='#ff7388'}root.querySelector('[data-count]').textContent=`Successful checks: ${ok} | Failed: ${fail}`}const timer=setInterval(check,8000);check();return()=>{clearInterval(timer);root.replaceChildren()};"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "tavros.recoil-control-switchboard",
+  "name": "Recoil Control Switchboard",
+  "version": "1.0.0",
+  "description": "Quickly enable or disable built-in recoil control.",
+  "author": "Tavros Baker",
+  "code": "const remove=xlinkWorkshop.addCheat(\"Recoil Control Switchboard\",\"Quickly enable or disable built-in recoil control.\",async()=>{const choice=prompt('Enter on or off for Recoil Control Switchboard','on');if(!choice)return;if(!['on','off'].includes(choice.toLowerCase()))throw Error('Choose on or off');await xlink.command(\"cheat recoil\"+' '+choice.toLowerCase())});return remove;"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "tavros.device-health-monitor",
+  "name": "Device Health Monitor",
+  "version": "1.0.0",
+  "description": "Poll live ESP32 /stats and show a readable health snapshot and JSON export.",
+  "author": "Tavros Baker",
+  "code": "const root=document.querySelector('#xp-plugin-'+\"tavros.device-health-monitor\"+' .xp-workshop-content');if(!root)throw Error('Plugin panel missing');root.innerHTML=\"<button data-refresh>Refresh stats</button> <label><input type=\\\"checkbox\\\" data-auto> Auto-refresh every 5s</label><pre data-json style=\\\"white-space:pre-wrap;overflow:auto\\\">Press Refresh.</pre><button data-export>Export snapshot</button>\";let latest=null;let busy=false;async function refresh(){if(busy)return;busy=true;try{latest=await xlink.status();root.querySelector('[data-json]').textContent=JSON.stringify(latest,null,2)}catch(e){root.querySelector('[data-json]').textContent='Stats unavailable: '+e.message}finally{busy=false}}root.querySelector('[data-refresh]').onclick=refresh;root.querySelector('[data-export]').onclick=()=>latest&&xlink.download('xlinkpro-device-stats.json',JSON.stringify(latest,null,2));const timer=setInterval(()=>{if(root.querySelector('[data-auto]')?.checked)refresh()},5000);refresh();return()=>{clearInterval(timer);root.replaceChildren()};"
+}

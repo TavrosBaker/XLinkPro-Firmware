@@ -1,0 +1,8 @@
+{
+  "id": "tavros.aim-assist-switchboard",
+  "name": "Aim Assist Switchboard",
+  "version": "1.0.0",
+  "description": "Quickly enable or disable the built-in aim assistance.",
+  "author": "Tavros Baker",
+  "code": "const remove=xlinkWorkshop.addCheat(\"Aim Assist Switchboard\",\"Quickly enable or disable the built-in aim assistance.\",async()=>{const choice=prompt('Enter on or off for Aim Assist Switchboard','on');if(!choice)return;if(!['on','off'].includes(choice.toLowerCase()))throw Error('Choose on or off');await xlink.command(\"cheat aim\"+' '+choice.toLowerCase())});return remove;"
+}

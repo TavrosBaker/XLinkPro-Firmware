@@ -1,0 +1,8 @@
+{
+  "id": "tavros.theme-preset-switcher",
+  "name": "Theme Preset Switcher",
+  "version": "1.0.0",
+  "description": "One-click purple dashboard colour palettes, including violet, cyberpunk and soft lavender.",
+  "author": "Tavros Baker",
+  "code": "const root=document.createElement('div');root.className='card xp-workshop-widget';root.style.cssText='margin:16px 0;border-left:3px solid #9b5cff;padding:16px';document.getElementById('settings').append(root);root.innerHTML=\"<div data-palette style=\\\"display:flex;gap:8px;flex-wrap:wrap\\\"></div><p>Temporary theme changes revert when this plugin is disabled.</p>\";const presets={'Royal Violet':'#9b5cff','Cyberpunk':'#e33af1','Deep Indigo':'#6456ff','Soft Lavender':'#b69cff','Amethyst':'#813dd6'};const vars=['--accent','--purple'];const previous=Object.fromEntries(vars.map(k=>[k,document.documentElement.style.getPropertyValue(k)]));for(const [name,color] of Object.entries(presets)){const b=document.createElement('button');b.textContent=name;b.style.borderLeft='5px solid '+color;b.onclick=()=>{for(const k of vars)document.documentElement.style.setProperty(k,color)};root.querySelector('[data-palette]').append(b)}return()=>{root.remove();for(const [k,v] of Object.entries(previous))v?document.documentElement.style.setProperty(k,v):document.documentElement.style.removeProperty(k);root.replaceChildren()};"
+}

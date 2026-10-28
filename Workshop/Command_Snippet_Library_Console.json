@@ -1,0 +1,8 @@
+{
+  "id": "tavros.command-snippet-library",
+  "name": "Command Snippet Library",
+  "version": "1.0.0",
+  "description": "Store, edit and run named console commands, saved in your browser.",
+  "author": "Tavros Baker",
+  "code": "const root=document.querySelector('#xp-plugin-'+\"tavros.command-snippet-library\"+' .xp-workshop-content');if(!root)throw Error('Plugin panel missing');root.innerHTML=\"<input data-name placeholder=\\\"Snippet name\\\"><input data-cmd placeholder=\\\"Command (e.g. press A 100)\\\"><button data-add>Save</button><div data-list></div>\";const key='tavros-command-snippets';let snippets=[];try{snippets=JSON.parse(localStorage.getItem(key)||'[]')}catch{}function draw(){const list=root.querySelector('[data-list]');list.replaceChildren();for(const s of snippets){const line=document.createElement('div');line.style.cssText='display:flex;align-items:center;gap:8px;margin:8px 0';const b=document.createElement('button');b.textContent=s.name;b.onclick=()=>xlink.command(s.cmd).catch(e=>alert(e.message));const d=document.createElement('button');d.textContent='×';d.onclick=()=>{snippets=snippets.filter(v=>v!==s);save()};const code=document.createElement('code');code.textContent=s.cmd;line.append(b,code,d);list.append(line)}}function save(){localStorage.setItem(key,JSON.stringify(snippets));draw()}root.querySelector('[data-add]').onclick=()=>{const name=root.querySelector('[data-name]').value.trim(),cmd=root.querySelector('[data-cmd]').value.trim();if(!name||!cmd||snippets.length>=30)return;snippets.push({name:name.slice(0,50),cmd:cmd.slice(0,160)});save()};draw();return()=>root.replaceChildren();"
+}

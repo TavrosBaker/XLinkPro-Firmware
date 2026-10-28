@@ -1,0 +1,8 @@
+{
+  "id": "tavros.command-history-exporter",
+  "name": "Command History Exporter",
+  "version": "1.0.0",
+  "description": "Export browser-side console command history and saved snippets for troubleshooting.",
+  "author": "Tavros Baker",
+  "code": "const root=document.querySelector('#xp-plugin-'+\"tavros.command-history-exporter\"+' .xp-workshop-content');if(!root)throw Error('Plugin panel missing');root.innerHTML=\"<button data-export>Export console history</button><p data-msg>Includes locally saved history keys only.</p>\";root.querySelector('[data-export]').onclick=()=>{const entries={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(/history|console|snippet/i.test(k))entries[k]=localStorage.getItem(k)}xlink.download('xlinkpro-console-history.json',JSON.stringify({date:new Date().toISOString(),entries},null,2));root.querySelector('[data-msg]').textContent='History exported'};return()=>root.replaceChildren();"
+}

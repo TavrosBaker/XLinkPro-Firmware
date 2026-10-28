@@ -1,0 +1,8 @@
+{
+  "id": "tavros.session-notes",
+  "name": "Session Notes",
+  "version": "1.0.0",
+  "description": "Keep persistent project notes, test observations and to-dos directly inside the dashboard.",
+  "author": "Tavros Baker",
+  "code": "const root=document.createElement('div');root.className='card xp-workshop-widget';root.style.cssText='margin:16px 0;border-left:3px solid #9b5cff;padding:16px';document.getElementById('settings').append(root);root.innerHTML=\"<textarea rows=\\\"9\\\" style=\\\"width:100%\\\" data-notes placeholder=\\\"Write notes about your setup...\\\"></textarea><p data-count></p><button data-export>Export notes</button>\";const k='tavros-session-notes';const area=root.querySelector('[data-notes]');area.value=localStorage.getItem(k)||'';function update(){localStorage.setItem(k,area.value);root.querySelector('[data-count]').textContent=area.value.length+' characters saved'}area.addEventListener('input',update);root.querySelector('[data-export]').onclick=()=>xlink.download('xlinkpro-notes.txt',area.value);update();return()=>root.replaceChildren();"
+}

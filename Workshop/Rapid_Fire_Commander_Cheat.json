@@ -1,0 +1,8 @@
+{
+  "id": "tavros.rapid-fire-commander",
+  "name": "Rapid Fire Commander",
+  "version": "1.0.0",
+  "description": "Quick toggle for built-in rapid-fire mode; use only where allowed.",
+  "author": "Tavros Baker",
+  "code": "const remove=xlinkWorkshop.addCheat(\"Rapid Fire Commander\",\"Quick toggle for built-in rapid-fire mode; use only where allowed.\",async()=>{const choice=prompt('Enter on or off for Rapid Fire Commander','on');if(!choice)return;if(!['on','off'].includes(choice.toLowerCase()))throw Error('Choose on or off');await xlink.command(\"cheat rapid\"+' '+choice.toLowerCase())});return remove;"
+}

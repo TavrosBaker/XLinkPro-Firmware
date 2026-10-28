@@ -1,0 +1,8 @@
+{
+  "id": "tavros.hold-a-trainer",
+  "name": "Hold A Trainer",
+  "version": "1.0.0",
+  "description": "A deliberate one-second A hold",
+  "author": "Tavros Baker",
+  "code": "const undo=xlinkWorkshop.addRoutine({\"name\":\"Hold A Trainer\",\"trigger\":\"manual\",\"steps\":[{\"type\":\"press\",\"button\":11,\"ms\":1000}]});xlink.log(\"Hold A Trainer installed in Macros\");return undo;"
+}

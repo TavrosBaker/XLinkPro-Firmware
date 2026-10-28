@@ -1,0 +1,8 @@
+{
+  "id": "tavros.controller-input-sequence-builder",
+  "name": "Controller Input Sequence Builder",
+  "version": "1.0.0",
+  "description": "Compose and execute short timed input sequences using dashboard console commands.",
+  "author": "Tavros Baker",
+  "code": "const root=document.querySelector('#xp-plugin-'+\"tavros.controller-input-sequence-builder\"+' .xp-workshop-content');if(!root)throw Error('Plugin panel missing');root.innerHTML=\"<p>One command per line. Examples: press A 100; wait 200. Runs sequentially, with a 20-command limit.</p><textarea rows=\\\"7\\\" style=\\\"width:100%\\\" data-seq>press A 100\\nwait 200\\npress B 100</textarea><div><button data-run>Run sequence</button><button data-stop>Cancel</button></div><p data-state>Idle</p>\";let cancelled=false;let running=false;const sleep=ms=>new Promise(r=>setTimeout(r,ms));root.querySelector('[data-run]').onclick=async()=>{if(running)return;running=true;cancelled=false;const lines=root.querySelector('[data-seq]').value.split(/\\n/).map(s=>s.trim()).filter(Boolean).slice(0,20);try{for(let i=0;i<lines.length&&!cancelled;i++){const line=lines[i];root.querySelector('[data-state]').textContent=`Step ${i+1}/${lines.length}: ${line}`;if(/^wait\\s+\\d+$/i.test(line))await sleep(Math.min(5000,Number(line.split(/\\s+/)[1])));else if(/^press\\s+[a-z0-9]+\\s+\\d+$/i.test(line))await xlink.command(line);else throw Error('Unsupported line: '+line)}root.querySelector('[data-state]').textContent=cancelled?'Cancelled':'Finished'}catch(e){root.querySelector('[data-state]').textContent=e.message}finally{running=false}};root.querySelector('[data-stop]').onclick=()=>{cancelled=true;xlink.stop()};return()=>{cancelled=true;root.replaceChildren()};"
+}

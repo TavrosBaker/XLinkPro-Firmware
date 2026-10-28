@@ -1,0 +1,8 @@
+{
+  "id": "tavros.a-button-rhythm",
+  "name": "A Button Rhythm",
+  "version": "1.0.0",
+  "description": "A measured four-beat controller-input practice pattern",
+  "author": "Tavros Baker",
+  "code": "const undo=xlinkWorkshop.addRoutine({\"name\":\"A Button Rhythm\",\"trigger\":\"manual\",\"steps\":[{\"type\":\"press\",\"button\":11,\"ms\":80},{\"type\":\"wait\",\"ms\":420},{\"type\":\"press\",\"button\":11,\"ms\":80},{\"type\":\"wait\",\"ms\":420},{\"type\":\"press\",\"button\":11,\"ms\":80},{\"type\":\"wait\",\"ms\":420},{\"type\":\"press\",\"button\":11,\"ms\":80},{\"type\":\"wait\",\"ms\":420}]});xlink.log(\"A Button Rhythm installed in Macros\");return undo;"
+}

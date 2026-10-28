@@ -1,0 +1,8 @@
+{
+  "id": "tavros.input-emergency-stop",
+  "name": "Input Emergency Stop",
+  "version": "1.0.0",
+  "description": "Immediately cancel browser-side controller timers and macros.",
+  "author": "Tavros Baker",
+  "code": "const remove=xlinkWorkshop.addCheat('Emergency STOP','Cancel all active browser-side controller timers.',()=>{xlink.stop();xlink.log('Emergency stop requested')});return remove;"
+}

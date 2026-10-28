@@ -1,0 +1,8 @@
+{
+  "id": "tavros.device-diagnostics-report",
+  "name": "Device Diagnostics Report",
+  "version": "1.0.0",
+  "description": "Collect firmware stats, browser details and dashboard feature checks into a downloadable diagnostic report.",
+  "author": "Tavros Baker",
+  "code": "const root=document.querySelector('#xp-plugin-'+\"tavros.device-diagnostics-report\"+' .xp-workshop-content');if(!root)throw Error('Plugin panel missing');root.innerHTML=\"<button data-run>Generate diagnostics</button><pre data-out style=\\\"white-space:pre-wrap;overflow:auto\\\"></pre><button data-save disabled>Download report</button>\";let report=null;root.querySelector('[data-run]').onclick=async()=>{report={created:new Date().toISOString(),browser:{userAgent:navigator.userAgent,language:navigator.language,online:navigator.onLine},dashboard:{version:xlinkWorkshop.version,sections:['controller','cheats','macros','console','settings','workshop'].map(id=>({id,found:!!document.getElementById(id)}))}};try{report.device=await xlink.status()}catch(e){report.deviceError=e.message}root.querySelector('[data-out]').textContent=JSON.stringify(report,null,2);root.querySelector('[data-save]').disabled=false};root.querySelector('[data-save]').onclick=()=>report&&xlink.download('xlinkpro-diagnostics.json',JSON.stringify(report,null,2));return()=>root.replaceChildren();"
+}

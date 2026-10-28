@@ -1,0 +1,8 @@
+{
+  "id": "tavros.quick-navigation-dock",
+  "name": "Quick Navigation Dock",
+  "version": "1.0.0",
+  "description": "A floating purple dock to jump between Controller, Cheats, Macros, Console, Settings and Workshop.",
+  "author": "Tavros Baker",
+  "code": "const root=document.createElement('div');root.className='card xp-workshop-widget';root.style.cssText='margin:16px 0;border-left:3px solid #9b5cff;padding:16px';document.getElementById('settings').append(root);root.innerHTML=\"<p>Floating navigation dock enabled. Drag-free, always one click away.</p>\";const dock=document.createElement('div');dock.style.cssText='position:fixed;left:50%;transform:translateX(-50%);bottom:12px;z-index:99998;background:#170d2aee;border:1px solid #9355d5;border-radius:22px;padding:8px;display:flex;gap:5px;box-shadow:0 8px 35px #0009';for(const [page,label] of [['controller','🎮'],['cheats','⚡'],['macros','⏱'],['console','⌨'],['settings','⚙'],['workshop','🧩']]){const b=document.createElement('button');b.textContent=label;b.title=page;b.style.cssText='padding:7px 10px;border-radius:12px';b.onclick=()=>xlink.navigate(page);dock.append(b)}document.body.append(dock);return()=>{root.remove();dock.remove()};"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "tavros.controller-command-pad",
+  "name": "Controller Command Pad",
+  "version": "1.0.0",
+  "description": "Quick customizable command buttons for A, B, X, Y, triggers, and emergency stop.",
+  "author": "Tavros Baker",
+  "code": "const root=document.querySelector('#xp-plugin-'+\"tavros.controller-command-pad\"+' .xp-workshop-content');if(!root)throw Error('Plugin panel missing');root.innerHTML=\"<div data-buttons style=\\\"display:flex;flex-wrap:wrap;gap:8px\\\"></div><p data-result>Ready</p>\";const buttons=root.querySelector('[data-buttons]');for(const key of ['A','B','X','Y','LB','RB','LT','RT','UP','DOWN','LEFT','RIGHT']){const b=document.createElement('button');b.textContent=key;b.onclick=async()=>{try{await xlink.command('press '+key+' 100');root.querySelector('[data-result]').textContent='Sent '+key}catch(e){root.querySelector('[data-result]').textContent=e.message}};buttons.append(b)}const stop=document.createElement('button');stop.textContent='STOP';stop.onclick=()=>xlink.stop();buttons.append(stop);return()=>root.replaceChildren();"
+}

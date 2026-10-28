@@ -1,0 +1,8 @@
+{
+  "id": "tavros.right-stick-sweep",
+  "name": "Right Stick Sweep",
+  "version": "1.0.0",
+  "description": "Slow horizontal sweep of the right stick",
+  "author": "Tavros Baker",
+  "code": "const undo=xlinkWorkshop.addRoutine({\"name\":\"Right Stick Sweep\",\"trigger\":\"manual\",\"steps\":[{\"type\":\"stick\",\"stick\":\"right\",\"x\":-60,\"y\":0,\"ms\":500},{\"type\":\"wait\",\"ms\":150},{\"type\":\"stick\",\"stick\":\"right\",\"x\":60,\"y\":0,\"ms\":500}]});xlink.log(\"Right Stick Sweep installed in Macros\");return undo;"
+}

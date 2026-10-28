@@ -1,0 +1,8 @@
+{
+  "id": "tavros.custom-welcome-banner",
+  "name": "Custom Welcome Banner",
+  "version": "1.0.0",
+  "description": "Add a configurable welcome message across the dashboard, with colour and persistence.",
+  "author": "Tavros Baker",
+  "code": "const root=document.createElement('div');root.className='card xp-workshop-widget';root.style.cssText='margin:16px 0;border-left:3px solid #9b5cff;padding:16px';document.getElementById('settings').append(root);root.innerHTML=\"<input data-msg placeholder=\\\"Welcome to XLinkPro\\\" style=\\\"width:65%\\\"><input type=\\\"color\\\" data-color value=\\\"#a855f7\\\"><button data-apply>Apply banner</button><button data-clear>Remove</button>\";const k='tavros-welcome-banner';const banner=document.createElement('div');banner.style.cssText='position:fixed;top:8px;left:50%;transform:translateX(-50%);z-index:99997;max-width:75vw;padding:10px 22px;border-radius:16px;background:#170d2ae8;border:1px solid #9b5cff;color:#a855f7;text-align:center;pointer-events:none';document.body.append(banner);function apply(o){banner.textContent=o.message;banner.style.color=o.color;banner.style.display=o.message?'block':'none';root.querySelector('[data-msg]').value=o.message;root.querySelector('[data-color]').value=o.color}let saved={message:'Welcome to XLinkPro',color:'#a855f7'};try{saved={...saved,...JSON.parse(localStorage.getItem(k)||'{}')}}catch{}apply(saved);root.querySelector('[data-apply]').onclick=()=>{saved={message:root.querySelector('[data-msg]').value.slice(0,100),color:root.querySelector('[data-color]').value};localStorage.setItem(k,JSON.stringify(saved));apply(saved)};root.querySelector('[data-clear]').onclick=()=>{saved.message='';localStorage.removeItem(k);apply(saved)};return()=>{root.remove();banner.remove()};"
+}

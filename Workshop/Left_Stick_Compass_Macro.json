@@ -1,0 +1,8 @@
+{
+  "id": "tavros.left-stick-compass",
+  "name": "Left Stick Compass",
+  "version": "1.0.0",
+  "description": "Moves the left stick through cardinal directions",
+  "author": "Tavros Baker",
+  "code": "const undo=xlinkWorkshop.addRoutine({\"name\":\"Left Stick Compass\",\"trigger\":\"manual\",\"steps\":[{\"type\":\"stick\",\"stick\":\"left\",\"x\":0,\"y\":100,\"ms\":300},{\"type\":\"wait\",\"ms\":100},{\"type\":\"stick\",\"stick\":\"left\",\"x\":100,\"y\":0,\"ms\":300},{\"type\":\"wait\",\"ms\":100},{\"type\":\"stick\",\"stick\":\"left\",\"x\":0,\"y\":-100,\"ms\":300},{\"type\":\"wait\",\"ms\":100},{\"type\":\"stick\",\"stick\":\"left\",\"x\":-100,\"y\":0,\"ms\":300}]});xlink.log(\"Left Stick Compass installed in Macros\");return undo;"
+}

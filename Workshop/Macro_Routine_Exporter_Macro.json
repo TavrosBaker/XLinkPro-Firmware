@@ -1,0 +1,8 @@
+{
+  "id": "tavros.macro-routine-exporter",
+  "name": "Macro Routine Exporter",
+  "version": "1.0.0",
+  "description": "Export the current browser-saved macro/routine data for backup and sharing.",
+  "author": "Tavros Baker",
+  "code": "const root=document.querySelector('#xp-plugin-'+\"tavros.macro-routine-exporter\"+' .xp-workshop-content');if(!root)throw Error('Plugin panel missing');root.innerHTML=\"<p>Exports stored macro data. Use the built-in Macros import to restore.</p><button data-export>Export routines</button><p data-result></p>\";root.querySelector('[data-export]').onclick=()=>{const found={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(/macro|routine/i.test(k))found[k]=localStorage.getItem(k)}xlink.download('xlinkpro-routines-storage.json',JSON.stringify({created:new Date().toISOString(),storage:found},null,2));root.querySelector('[data-result]').textContent=Object.keys(found).length+' matching storage keys exported'};return()=>root.replaceChildren();"
+}

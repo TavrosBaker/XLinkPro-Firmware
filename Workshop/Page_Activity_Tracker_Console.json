@@ -1,0 +1,8 @@
+{
+  "id": "tavros.page-activity-tracker",
+  "name": "Page Activity Tracker",
+  "version": "1.0.0",
+  "description": "Track dashboard page changes and how long you spend on each section.",
+  "author": "Tavros Baker",
+  "code": "const root=document.querySelector('#xp-plugin-'+\"tavros.page-activity-tracker\"+' .xp-workshop-content');if(!root)throw Error('Plugin panel missing');root.innerHTML=\"<p data-current>Watching navigation</p><pre data-report></pre><button data-export>Export session</button>\";const data={};let current='unknown',since=Date.now();function update(next){data[current]=(data[current]||0)+(Date.now()-since);current=next;since=Date.now();root.querySelector('[data-current]').textContent='Current page: '+current;root.querySelector('[data-report]').textContent=Object.entries(data).map(([k,v])=>`${k}: ${(v/1000).toFixed(1)}s`).join('\\n')||'No previous pages yet'}const off=xlinkWorkshop.onPage(update);root.querySelector('[data-export]').onclick=()=>{update(current);xlink.download('xlinkpro-page-activity.json',JSON.stringify(data,null,2))};update(document.querySelector('.nav.active')?.dataset.page||'unknown');return()=>{off();root.replaceChildren()};"
+}

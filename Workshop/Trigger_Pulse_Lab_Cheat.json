@@ -1,0 +1,8 @@
+{
+  "id": "tavros.trigger-pulse-lab",
+  "name": "Trigger Pulse Lab",
+  "version": "1.0.0",
+  "description": "Run a user-selected controller press command from the Cheats page.",
+  "author": "Tavros Baker",
+  "code": "const remove=xlinkWorkshop.addCheat('Trigger Pulse Lab','Run a single test pulse using the command parser.',async()=>{const button=prompt('Button name (e.g. A, RT, RB)','A');if(!button)return;const ms=Math.max(20,Math.min(1000,Number(prompt('Duration in milliseconds','120'))||120));await xlink.command('press '+button.replace(/[^a-z0-9]/gi,'')+' '+ms)});return remove;"
+}
